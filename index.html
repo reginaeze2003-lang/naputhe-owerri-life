@@ -1,4 +1,80 @@
+https://reginaeze2003-lang.github.io/naputhe-owerri-life/
+const town = document.getElementById("town");
+const ctx = town.getContext("2d");
 
+const people = Array.from({ length: 10 }, (_, i) => ({
+  x: 30 + Math.random() * 540,
+  y: 30 + Math.random() * 290,
+  dx: Math.random() * 2 - 1,
+  dy: Math.random() * 2 - 1,
+  color: ["red", "blue", "orange", "purple", "brown"][i % 5]
+}));
+
+function walkAround() {
+  ctx.clearRect(0, 0, town.width, town.height);
+
+  people.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 10 || p.x > town.width - 10) p.dx *= -1;
+    if (p.y < 10 || p.y > town.height - 10) p.dy *= -1;
+
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 9, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#222";
+    ctx.fillRect(p.x - 5, p.y + 8, 10, 12);
+  });
+
+  requestAnimationFrame(walkAround);
+}
+
+walkAround();
+
+const town = document.getElementById("town");
+const ctx = town.getContext("2d");
+
+const people = Array.from({ length: 10 }, (_, i) => ({
+  x: 30 + Math.random() * 540,
+  y: 30 + Math.random() * 290,
+  dx: Math.random() * 2 - 1,
+  dy: Math.random() * 2 - 1,
+  color: ["red", "blue", "orange", "purple", "brown"][i % 5]
+}));
+
+function walkAround() {
+  ctx.clearRect(0, 0, town.width, town.height);
+
+  people.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 10 || p.x > town.width - 10) p.dx *= -1;
+    if (p.y < 10 || p.y > town.height - 10) p.dy *= -1;
+
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 9, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#222";
+    ctx.fillRect(p.x - 5, p.y + 8, 10, 12);
+  });
+
+  requestAnimationFrame(walkAround)
+}
+
+walkAround();
+      <div class="card">
+  <h2>🏘️ People Walking Around Owerri</h2>
+  <canvas id="town" width="600" height="350"
+    style="width:100%;background:#b9d99a;border-radius:12px">
+  </canvas>
+  <p>Watch the people walk around our town!</p>
+      </div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
