@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naputhe Owerri Life</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5eee3;color:#29251f}
+header{background:#176b45;color:white;text-align:center;padding:24px 12px}
+h1{margin:0;font-size:27px}
+header p{margin:9px 0 0}
+main{max-width:600px;margin:auto;padding:18px}
+.card{background:white;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 3px 12px #0001}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#e5f3e8;padding:12px;border-radius:10px}
+button{width:100%;padding:14px;margin:6px 0;border:0;border-radius:10px;background:#176b45;color:white;font-size:16px;font-weight:bold}
+button:active{transform:scale(.98)}
+.secondary{background:#a65b2e}
+#message{line-height:1.6;min-height:48px}
+footer{text-align:center;padding:20px;color:#666}
+</style>
+</head>
+<body>
+<header>
+<h1>🌴 Naputhe Owerri Life</h1>
+<p>Your story. Your choices. Your Owerri!</p>
+</header>
+<main>
+<div class="card">
+<h2>Welcome to Owerri! 🇳🇬</h2>
+<p>Start your journey, make money, take care of yourself, and build your dream life in Imo State.</p>
+<button onclick="startGame()">START YOUR LIFE</button>
+</div>
+<div id="game" style="display:none">
+<div class="card">
+<h2>👤 Your Life</h2>
+<div class="stats">
+<div class="stat">💵 Money<br><b id="money">₦5,000</b></div>
+<div class="stat">❤️ Health<br><b id="health">100</b></div>
+<div class="stat">😊 Happiness<br><b id="happy">70</b></div>
+<div class="stat">📅 Day<br><b id="day">1</b></div>
+</div>
+</div>
+<div class="card">
+<h2>🏙️ What will you do today?</h2>
+<button onclick="act('work')">💼 Go to work (+₦3,000)</button>
+<button onclick="act('food')">🍲 Buy food (-₦1,000)</button>
+<button onclick="act('fun')">🎉 Have fun (-₦1,500)</button>
+<button onclick="act('rest')">🛌 Rest at home</button>
+<button class="secondary" onclick="act('market')">🛍️ Visit Owerri market</button>
+</div>
+<div class="card">
+<h2>📖 Your Story</h2>
+<p id="message">Welcome! Press START YOUR LIFE to begin.</p>
+</div>
+</div>
+</main>
+<footer>Naputhe Owerri Life © 2026</footer>
+<script>
+let money=5000,health=100,happy=70,day=1,started=false;
+function startGame(){
+if(started)return;
+started=true;
+document.getElementById('game').style.display='block';
+document.getElementById('message').textContent='Your new life in Owerri has begun! What will you do first?';
+update();
+}
+function act(choice){
+if(!started)return;
+let msg='';
+if(choice==='work'){
+money+=3000;health-=10;happy-=3;
+msg='You worked hard today and earned ₦3,000. Keep chasing your dreams!';
+}
+if(choice==='food'){
+if(money<1000){msg='Not enough money! Find a way to earn some first.'}
+else{money-=1000;health=Math.min(100,health+15);happy+=3;msg='You bought a tasty meal. Your energy is improving!';}
+}
+if(choice==='fun'){
+if(money<1500){msg='You cannot afford this outing yet. Try working first.'}
+else{money-=1500;happy=Math.min(100,happy+18);msg='You enjoyed yourself in Owerri. Life is beautiful!';}
+}
+if(choice==='rest'){
+health=Math.min(100,health+20);happy=Math.min(100,happy+5);msg='You rested at home and regained your strength.';
+}
+if(choice==='market'){
+if(money<500){msg='You need at least ₦500 for transport and a small market purchase.'}
+else{money-=500;happy=Math.min(100,happy+8);msg='You explored a lively Owerri market and met new people!';}
+}
+health=Math.max(0,health);happy=Math.max(0,happy);
+day++;
+document.getElementById('message').textContent=msg;
+update();
+if(health===0){
+document.getElementById('message').textContent+=' Your health is very low. Buy food or rest to recover.';
+}
+}
+function update(){
+document.getElementById('money').textContent='₦'+money.toLocaleString('en-NG');
+document.getElementById('health').textContent=health;
+document.getElementById('happy').textContent=happy;
+document.getElementById('day').textContent=day;
+}
+</script>
+</body>
+  </html>
+  
